@@ -1,4 +1,4 @@
-package utils;
+package com.crm.qa.base;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
