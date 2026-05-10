@@ -1,73 +1,95 @@
 package com.crm.qa.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.crm.qa.base.TestBase;
+import com.crm.qa.base.WaitUtilsKeywords;
+
+import org.openqa.selenium.JavascriptExecutor;
 
 public class HomePage extends TestBase {
 
-	@FindBy(xpath = "//td[contains(text(),'User: Naveen K')]")
-	@CacheLookup
-	WebElement userNameLabel;
+	WaitUtilsKeywords waitUtils;
 
-	@FindBy(xpath = "//a[contains(text(),'Contacts')]")
-	WebElement contactsLink;
-	
-	@FindBy(xpath = "//a[contains(text(),'New Contact')]")
-	WebElement newContactLink;
-	
+	@FindBy(xpath = "//a[@data-testid='nav-home']")
+	WebElement logo;
 
-	@FindBy(xpath = "//a[contains(text(),'Deals')]")
-	WebElement dealsLink;
+	@FindBy(xpath = "//a[@data-testid='nav-products']")
+	WebElement shopLink;
 
-	@FindBy(xpath = "//a[contains(text(),'Tasks')]")
-	WebElement tasksLink;
+	@FindBy(xpath = "//a[@data-testid='nav-cart']")
+	WebElement cartLink;
 
-	// Initializing the Page Objects:
+	@FindBy(xpath = "//a[@data-testid='nav-login']")
+	WebElement loginLink;
+
+	@FindBy(xpath = "//a[@data-testid='nav-register']")
+	WebElement registerLink;
+
+	@FindBy(xpath = "//input[@data-testid='filter-search']")
+	WebElement searchInput;
+
+	@FindBy(xpath = "//select[@data-testid='filter-category']")
+	WebElement categorySelect;
+
 	public HomePage() {
 		PageFactory.initElements(driver, this);
+		waitUtils = new WaitUtilsKeywords(driver);
 	}
-	
-	public String verifyHomePageTitle(){
+
+	public String verifyHomePageTitle() {
 		return driver.getTitle();
 	}
-	
-	
-	public boolean verifyCorrectUserName(){
-		return userNameLabel.isDisplayed();
-	}
-	
-	public ContactsPage clickOnContactsLink(){
-		contactsLink.click();
-		return new ContactsPage();
-	}
-	
-	public DealsPage clickOnDealsLink(){
-		dealsLink.click();
-		return new DealsPage();
-	}
-	
-	public TasksPage clickOnTasksLink(){
-		tasksLink.click();
-		return new TasksPage();
-	}
-	
-	public void clickOnNewContactLink(){
-		Actions action = new Actions(driver);
-		action.moveToElement(contactsLink).build().perform();
-		newContactLink.click();
-		
-	}
-	
-	
-	
-	
-	
-	
-	
 
+	public boolean validateLogoDisplayed() {
+		return waitUtils.isElementVisible(By.xpath("//a[@data-testid='nav-home']"));
+	}
+
+	public boolean validateShopLinkDisplayed() {
+		return waitUtils.isElementVisible(By.xpath("//a[@data-testid='nav-products']"));
+	}
+
+	public boolean validateCartLinkDisplayed() {
+		return waitUtils.isElementVisible(By.xpath("//a[@data-testid='nav-cart']"));
+	}
+
+	public boolean validateLoginLinkDisplayed() {
+		return waitUtils.isElementVisible(By.xpath("//a[@data-testid='nav-login']"));
+	}
+
+	public boolean validateRegisterLinkDisplayed() {
+		return waitUtils.isElementVisible(By.xpath("//a[@data-testid='nav-register']"));
+	}
+
+	public boolean validateProductCountDisplayed() {
+		return waitUtils.isElementVisible(By.xpath("//span[@data-testid='filter-summary']"));
+	}
+
+	public String getProductCountText() {
+		waitUtils.waitForTextNot(
+				By.xpath("//span[@data-testid='filter-summary']"),
+				"Loading products");
+		return (String) ((JavascriptExecutor) driver).executeScript(
+				"return arguments[0].textContent;", driver.findElement(By.xpath("//span[@data-testid='filter-summary']")));
+	}
+
+	public void searchByKeyword(String keyword) {
+		waitUtils.typeByLocator(By.xpath("//input[@data-testid='filter-search']"), keyword);
+	}
+
+	public void clearSearch() {
+		waitUtils.typeByLocator(By.xpath("//input[@data-testid='filter-search']"), "");
+	}
+
+	public void filterByCategory(String categoryLabel) {
+		waitUtils.selectByVisibleText(By.xpath("//select[@data-testid='filter-category']"), categoryLabel);
+	}
+
+	public boolean isProductVisible(String productName) {
+		return waitUtils.isElementVisible(
+				By.xpath("//*[contains(text(),'" + productName + "')]"));
+	}
 }

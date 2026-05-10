@@ -1,0 +1,91 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - link "B Bidshop" [ref=e4] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e5]: B
+      - generic [ref=e6]: Bidshop
+    - navigation [ref=e7]:
+      - link "Shop" [ref=e8] [cursor=pointer]:
+        - /url: /
+      - link "Cart" [ref=e9] [cursor=pointer]:
+        - /url: /cart
+    - generic [ref=e10]:
+      - link "Log in" [ref=e11] [cursor=pointer]:
+        - /url: /login
+      - link "Register" [ref=e12] [cursor=pointer]:
+        - /url: /register
+  - main [ref=e13]:
+    - generic [ref=e14]:
+      - generic [ref=e16]:
+        - heading "Fresh food, delivered to your kitchen." [level=1] [ref=e17]
+        - paragraph [ref=e18]: Bidshop supplies cafes, restaurants and foodservice businesses across Aotearoa with quality ingredients from trusted local suppliers.
+      - generic [ref=e19]:
+        - searchbox "Search products…" [ref=e20]
+        - combobox [ref=e21]:
+          - option "All categories" [selected]
+          - option "Bakery"
+          - option "Beverages"
+          - option "Dairy"
+          - option "Fresh Produce"
+          - option "Frozen"
+          - option "Meat & Poultry"
+          - option "Pantry"
+          - option "Seafood"
+        - generic [ref=e22]: 18 products
+      - generic [ref=e25]:
+        - article [ref=e26]:
+          - img "NZ Grass-Fed Beef Mince" [ref=e27]
+          - generic [ref=e28]
+        - article [ref=e37]:
+          - img "Free-Range Chicken Breast" [ref=e38]
+          - generic [ref=e39]
+        - article [ref=e48]:
+          - img "Bluff Oysters (Dozen)" [ref=e49]
+          - generic [ref=e50]
+        - article [ref=e59]:
+          - img "Wild NZ King Salmon Fillet" [ref=e60]
+          - generic [ref=e61]
+        - article [ref=e70]:
+          - img "Organic Hass Avocados" [ref=e71]
+          - generic [ref=e72]
+        - article [ref=e81]:
+          - img "Baby Spinach Leaves" [ref=e82]
+          - generic [ref=e83]
+        - article [ref=e92]:
+          - img "Vine-Ripened Tomatoes" [ref=e93]
+          - generic [ref=e94]
+        - article [ref=e103]:
+          - img "Anchor Full Cream Milk" [ref=e104]
+          - generic [ref=e105]
+        - article [ref=e114]:
+          - img "Mainland Tasty Cheese Block" [ref=e115]
+          - generic [ref=e116]
+        - article [ref=e125]:
+          - img "Puhoi Valley Greek Yoghurt" [ref=e126]
+          - generic [ref=e127]
+        - article [ref=e136]:
+          - img "Vogel's Mixed Grain Bread" [ref=e137]
+          - generic [ref=e138]
+        - article [ref=e147]:
+          - img "Sourdough Ciabatta" [ref=e148]
+          - generic [ref=e149]
+        - article [ref=e158]:
+          - img "Watties Baked Beans" [ref=e159]
+          - generic [ref=e160]
+        - article [ref=e169]:
+          - img "Extra Virgin Olive Oil" [ref=e170]
+          - generic [ref=e171]
+        - article [ref=e180]:
+          - img "Tip Top Vanilla Ice Cream" [ref=e181]
+          - generic [ref=e182]
+        - article [ref=e191]:
+          - img "Frozen Mixed Berries" [ref=e192]
+          - generic [ref=e193]
+        - article [ref=e202]:
+          - img "Phoenix Organic Cola" [ref=e203]
+          - generic [ref=e204]
+        - article [ref=e213]:
+          - img "Karma Cola Sparkling Water" [ref=e214]
+          - generic [ref=e215]
+  - contentinfo [ref=e23]:
+    - generic [ref=e24]: © 2026 Bidshop demo – built for the Bidfood SDET technical test.

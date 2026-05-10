@@ -1,11 +1,15 @@
-package utils;
+package com.crm.qa.base;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
+
+import org.openqa.selenium.StaleElementReferenceException;
 
 public class WaitUtilsKeywords {
 
@@ -175,5 +179,29 @@ public class WaitUtilsKeywords {
         } catch (TimeoutException e) {
             // No alert present, ignore
         }
+    }
+
+    public void waitForTextNot(By locator, String excludedText) {
+        new org.openqa.selenium.support.ui.FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(10))
+                .pollingEvery(Duration.ofMillis(200))
+                .ignoring(StaleElementReferenceException.class)
+                .until(driver -> {
+                    try {
+                        WebElement el = driver.findElement(locator);
+                        String text = el.getText();
+                        return text != null
+                                && !text.equals("Loading products")
+                                && !text.contains("Loading");
+                    } catch (NoSuchElementException e) {
+                        return false;
+                    }
+                });
+    }
+
+    public void selectByVisibleText(By locator, String text) {
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+        Select select = new Select(element);
+        select.selectByVisibleText(text);
     }
 }
