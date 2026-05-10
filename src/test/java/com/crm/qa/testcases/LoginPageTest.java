@@ -25,19 +25,28 @@ public class LoginPageTest extends TestBase{
 	
 	@Test(priority=1)
 	public void loginPageTitleTest(){
+		loginPage.navigateToLogin();
 		String title = loginPage.validateLoginPageTitle();
-		Assert.assertEquals(title, "#1 Free CRM for Any Business: Online Customer Relationship Software");
+		Assert.assertEquals(title, "Bidshop – fresh food for your business");
 	}
-	
+
 	@Test(priority=2)
-	public void crmLogoImageTest(){
-		boolean flag = loginPage.validateCRMImage();
+	public void validateEmailFieldTest(){
+		loginPage.navigateToLogin();
+		boolean flag = loginPage.validateEmailField();
 		Assert.assertTrue(flag);
 	}
-	
+
 	@Test(priority=3)
+	public void validatePasswordFieldTest(){
+		loginPage.navigateToLogin();
+		boolean flag = loginPage.validatePasswordField();
+		Assert.assertTrue(flag);
+	}
+
+	@Test(priority=4)
 	public void loginTest(){
-		homePage = loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+		homePage = loginPage.login(prop.getProperty("cart_email"), prop.getProperty("cart_password"));
 	}
 	
 	

@@ -92,4 +92,14 @@ public class HomePage extends TestBase {
 		return waitUtils.isElementVisible(
 				By.xpath("//*[contains(text(),'" + productName + "')]"));
 	}
+
+	public void addFirstProductToCart() {
+		waitUtils.clickByLocator(
+				By.xpath("(//button[@data-testid='product-add-to-cart'])[1]"));
+	}
+
+	public void addSecondProductToCart() {
+		waitUtils.clickByLocator(
+				By.xpath("(//button[@data-testid='product-add-to-cart'])[2]"));
+	}
 }
